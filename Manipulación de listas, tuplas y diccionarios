@@ -1,0 +1,28 @@
+# Tarea2
+carreras = ("Ingeniería de Software", "Contabilidad", "Derecho")
+personas = []
+estudiantes = []
+for _ in range(5):
+    nombre = input("Nombre: ")
+    apellido = input("Apellido: ")
+    edad = int(input("Edad: "))
+    carrera = int(input("Código de carrera (0, 1 o 2): "))
+    dato = (nombre, apellido, edad, carrera)
+    personas.append(dato)
+    print()  # Espacio para separar cada ingreso
+for p in personas:
+    nom = p[0]
+    ape = p[1]
+    eda = p[2]
+    cod = p[3]
+    nombre_carrera = carreras[cod]
+    dic = {
+        "nombre": nom,
+        "apellido": ape,
+        "edad": eda,
+        "carrera": nombre_carrera
+    }
+    estudiantes.append(dic)
+print("=== Resultados ===")
+for est in estudiantes:
+    print(f"{est['nombre']} {est['apellido']} tiene {est['edad']} años y estudia {est['carrera']}")
