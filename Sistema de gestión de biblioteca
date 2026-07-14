@@ -1,0 +1,74 @@
+class Libro:
+    def __init__(self,titulo,autor,paginas,categorias):
+        self.titulo=titulo
+        self.autor=autor
+        self.paginas=paginas
+        self.categorias=categorias
+    def __str__(self):
+        return f"{self.titulo} - {self.autor} - {self.paginas} paginas - {self.categorias}"
+
+libros=[
+    Libro("El Principito","Antoine",96,["Ficcion","Infantil"]),
+    Libro("Cien años de soledad","Garcia Marquez",471,["Novela","Realismo"]),
+    Libro("Python para principiantes","John",220,["Programacion","Tecnologia"]),
+    Libro("Historia del mundo","Varios",850,["Historia","Educacion"]),
+    Libro("El Alquimista","Paulo",163,["Novela","Autoayuda"])
+]
+
+categorias={"Ficcion","Infantil","Novela","Realismo","Programacion","Tecnologia","Historia","Educacion","Autoayuda"}
+
+def mostrar_libros(lista):
+    if not lista:
+        print("No hay libros")
+        return
+    for l in lista:
+        print(l)
+
+def buscar_por_paginas(lista,limite):
+    encontrados=[]
+    for l in lista:
+        if l.paginas<limite:
+            encontrados.append(l)
+    if not encontrados:
+        print("No hay libros con menos de",limite,"paginas")
+        return
+    for l in encontrados:
+        print(l)
+
+def agregar_categoria(conjunto,nueva):
+    nueva=nueva.strip().capitalize()
+    if nueva in conjunto:
+        print("La categoria ya existe")
+        return
+    conjunto.add(nueva)
+    print("Categoria agregada:",nueva)
+
+def menu():
+    print("\n--- GESTION DE BIBLIOTECA ---")
+    print("1. Ver todos los libros")
+    print("2. Buscar por numero de paginas")
+    print("3. Agregar nueva categoria")
+    print("4. Salir")
+
+while True:
+    menu()
+    opcion=input("Elige una opcion: ")
+    if opcion=="1":
+        print("\nLibros disponibles:")
+        mostrar_libros(libros)
+    elif opcion=="2":
+        try:
+            num=int(input("Ingresa limite de paginas: "))
+            print("\nResultado:")
+            buscar_por_paginas(libros,num)
+        except:
+            print("Escribe un numero valido")
+    elif opcion=="3":
+        cat=input("Nombre de la nueva categoria: ")
+        agregar_categoria(categorias,cat)
+    elif opcion=="4":
+        print("Saliendo...")
+        break
+    else:
+        print("Opcion incorrecta, intenta de nuevo")
+        
